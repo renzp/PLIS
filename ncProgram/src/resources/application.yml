@@ -1,0 +1,71 @@
+server:
+  port: 8078
+  # 下面是配置undertow作为服务器的参数
+  undertow:
+    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+    io-threads: 4
+    # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+    worker-threads: 20
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分
+    buffer-size: 1024
+    # 是否分配的直接内存
+    direct-buffers: true
+logging:
+  level:
+    com.dynamic.form.dao : error
+    root: error
+    com.cloud: error
+  file: logs/${spring.application.name}.log
+spring:
+  application:
+    name: ncProgram
+  #  main:
+  #    allow-bean-definition-overriding: true # Spring Boot 2.1 需要设定
+  #  autoconfigure: #排除eureka注册中心-------#排除eureka注册中心
+  #exclude: org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration #排除eureka注册中心
+#  cloud: # 采用阿里的nacos来作为配置中心和注册中心
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#        namespace: 37ea022e-5b25-4c41-b197-69c7440d9f57
+  datasource:
+    druid:
+      url: jdbc:oracle:thin:@127.0.0.1:1521/ORCL
+      username: NANCAL
+      password: NANCAL
+      driver-class-name: oracle.jdbc.OracleDriver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+mybatis:
+  #实体类所做包
+  type-aliases-package: com.mes.basicinfo.dao.entity
+  #mapper.xml所在位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+#加入平台需要的配置
+#security:  #鉴权使用的，配置上这个系统会自动鉴权，也就是方法上面的 鉴权的注解，通过这个获取用户信息，用户信息里面包括权限、角色信息
+#  oauth2:
+#    resource:
+#      user-info-uri: http://local.gateway.com:8080/api-o/user-me
+#      prefer-token-info: false
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always

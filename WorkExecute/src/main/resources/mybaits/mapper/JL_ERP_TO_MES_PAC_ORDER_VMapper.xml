@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WE.dao.mapper.JL_ERP_TO_MES_PAC_ORDER_VMapper">
+    <!--<resultMap id="BaseResultMap" type="WE.dao.entity.JL_ERP_TO_MES_PAC_ORDER_V">-->
+        <!--<result column="COMPANY_CODE" property="COMPANY_CODE" />-->
+        <!--<result column="ORDER_NO" property="ORDER_NO" />-->
+        <!--<result column="ITEM_CODE" property="ITEM_CODE" />-->
+    <!--</resultMap>-->
+
+    <select id="GetAllMesTask" resultType="WE.dao.entity.JL_ERP_TO_MES_PAC_ORDER_V" >
+        select * from JL_ERP_TO_MES_PAC_ORDER_V
+    </select>
+</mapper>

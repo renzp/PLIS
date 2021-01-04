@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PLIS.iml" filepath="$PROJECT_DIR$/PLIS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WorkExecute/WorkExecute.iml" filepath="$PROJECT_DIR$/WorkExecute/WorkExecute.iml" />
+      <module fileurl="file://$PROJECT_DIR$/item/item.iml" filepath="$PROJECT_DIR$/item/item.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ncProgram/ncProgram.iml" filepath="$PROJECT_DIR$/ncProgram/ncProgram.iml" />
+    </modules>
+  </component>
+</project>

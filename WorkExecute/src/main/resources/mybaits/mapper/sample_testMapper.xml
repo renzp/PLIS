@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WE.dao.mapper.sample_testMapper">
+    <resultMap id="BaseResultMap" type="WE.dao.entity.sample_test">
+        <result column="ITEM_CODE" jdbcType="VARCHAR" property="ITEM_CODE" />
+        <result column="ITEM_NAME" jdbcType="VARCHAR" property="ITEM_NAME" />
+        <result column="ITEM_MODEL" jdbcType="VARCHAR" property="ITEM_MODEL" />
+    </resultMap>
+
+    <select id="getAllCollect" resultMap="BaseResultMap">
+        select * from sample_test
+    </select>
+</mapper>

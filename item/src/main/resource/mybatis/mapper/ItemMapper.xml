@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="item.dao.ItemDao">
+    <resultMap id="item" type="item.entity.ItemEntity">
+        <result property="id" column="ID"></result>
+        <result property="jobId" column="JOBID"></result>
+        <result property="drawCode" column="DRAWCODE"></result>
+        <result property="itemCode" column="ITEMCODE"></result>
+        <result property="itemName" column="ITEMNAME"></result>
+        <result property="itemType" column="ITEMTYPE"></result>
+        <result property="needNum" column="NEEDNUM"></result>
+        <result property="stockNum" column="STOCKNUM"></result>
+        <result property="lackNum" column="LACKNUM"></result>
+        <result property="status" column="STATUS"></result>
+        <result property="createTime" column="CREATETIME"></result>
+    </resultMap>
+    <!-- 查询的公共字段-->
+    <sql id="fieldType">
+        t.ID,
+        t.JOBID,
+        t.DRAWCODE,
+        t.ITEMCODE,
+        t.ITEMNAME,
+        t.ITEMTYPE,
+        t.NEEDNUM,
+        t.STOCKNUM,
+        t.LACKNUM,
+        t.STATUS,
+        t.CREATETIME
+    </sql>
+
+    <select id="getItemList" resultMap="item">
+        SELECT
+        <include refid="fieldType"/>
+        FROM T_PLIS_ITEM t
+        <where>
+            <if test="jobId !='' and jobId != null ">
+                t.JOBID like concat('%',#{jobId},'%')
+            </if>
+            <if test="drawCode !='' and drawCode != null ">
+                and  t.DRAWCODE like concat('%',#{drawCode},'%')
+            </if>
+            <if test="status !='' and status != null ">
+                and  t.STATUS like concat('%',#{status},'%')
+            </if>
+        </where>
+        order by t.CREATETIME desc
+    </select>
+</mapper>

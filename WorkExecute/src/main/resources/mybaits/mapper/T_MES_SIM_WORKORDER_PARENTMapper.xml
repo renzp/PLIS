@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WE.dao.mapper.T_MES_SIM_WORKORDER_PARENTMapper">
+    <select id="GetAllPLTaskParent" resultType="WE.dao.entity.T_MES_SIM_WORKORDER_PARENT" >
+        select * from T_MES_SIM_WORKORDER_PARENT
+    </select>
+
+    <insert id="InsertTaskParent">
+        insert into T_MES_SIM_WORKORDER_PARENT (company_code,workorderCode,materielcode,quantity,registercode,registername,
+        registerorgcode,registerorgname) values
+        (#{company_code},#{workordercode},#{materielcode},#{quantity},#{registercode},#{registername},#{registerorgcode},#{registerorgname})
+    </insert>
+</mapper>
